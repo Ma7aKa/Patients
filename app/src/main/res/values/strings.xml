@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">PacientLog</string>
+    <string name="search">Искать</string>
+    <string name="enter_patient">Введите имя/фамилию пациента</string>
+    <string name="add_patient">Добавить пациента</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="patronymic">Отчество</string>
+    <string name="data">Дата рождения</string>
+    <string name="number1">Номер телефона</string>
+    <string name="add_number">Добавить номер</string>
+    <string name="register">Зарегистрировать</string>
+    <string name="photo">Фоточка</string>
+    <string name="number">Номер телефона</string>
+    <string name="alphabet">По алфавиту</string>
+    <string name="date">По дате регистрации</string>
+    <string name="visited_date">По дате посещения</string>
+    <string name="not_visited">Посещений нет</string>
+    <string name="remove_day">Удалить день</string>
+    <string name="redactor">Редактировать</string>
+    <string name="address">Адрес</string>
+    <string name="image">image</string>
+    <string name="add_photo">Выбрать фото</string>
+    <string name="save">Сохранить</string>
+    <string name="add_date">Добавить дату</string>
+    <string name="enter_date">Введите дату</string>
+    <string name="example_21_02_1997">Example: 21-02-1997</string>
+    <string name="next_visit_dates_text">Даты следующих визитов</string>
+    <string name="was_dates_visit_text">Даты предыдущих визитов</string>
+    <string name="description_of_day">Описание данного дня</string>
+    <string name="remove_patient">Удалить пациента</string>
+</resources>
