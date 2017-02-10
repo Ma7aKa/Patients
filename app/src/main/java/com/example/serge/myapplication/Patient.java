@@ -194,7 +194,7 @@ public class Patient implements Serializable
     }
     public void addDescription(String description)
     {
-        descriptions.add(description);
+        descriptions.add(0,description);
     }
     public void removeDescription(int position)
     {

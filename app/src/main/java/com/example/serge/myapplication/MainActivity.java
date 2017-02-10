@@ -254,14 +254,14 @@ public class MainActivity extends AppCompatActivity {
             if (patient.getWasVisits().size() > 0) {
                 String st = DateUtils.formatDateTime(context,patient.getLastVisit(),DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
                 ((TextView) convertView.findViewById(R.id.date_last_visit))
-                        .setText(st);
+                        .setText("Последний визит\n" + st);
             }
             else ((TextView) convertView.findViewById(R.id.date_last_visit))
-                    .setText(getResources().getString(R.string.not_visited));
+                    .setText("Последний визит\n" + getResources().getString(R.string.not_visited));
 
             String st = DateUtils.formatDateTime(context,patient.getRegistration(),DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
             ((TextView) convertView.findViewById(R.id.registration_date))
-                    .setText("Дата регистрации : " + st);
+                    .setText("Регистрация\n" + st);
 
             ((ImageView) convertView.findViewById(R.id.image_id))
                     .setImageBitmap(getBitmapFromBytes(patient.getBytes()));

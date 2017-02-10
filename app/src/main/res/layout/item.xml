@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/registration_date"
             android:textSize="15sp"
+            android:textAlignment="center"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 

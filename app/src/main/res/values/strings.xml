@@ -29,4 +29,6 @@
     <string name="was_dates_visit_text">Даты предыдущих визитов</string>
     <string name="description_of_day">Описание данного дня</string>
     <string name="remove_patient">Удалить пациента</string>
+    <string name="choose_photo">Выбрать фотографию</string>
+    <string name="make_image">Сделать снимок</string>
 </resources>

@@ -21,9 +21,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,6 +94,8 @@ public class PatientInfoActivity extends AppCompatActivity
     private ArrayList<String> descriptions;
 
     private static final int GALLERY_REQUEST = 0;
+    private static final int PHOTO_REQUEST = 0;
+    private static boolean visibility = false;
 
     private static final String FILENAME = "te.out";
 
@@ -110,9 +114,8 @@ public class PatientInfoActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, GALLERY_REQUEST);
+                makeChoice();
+
             }
         });
         save_button.setOnClickListener(new View.OnClickListener()
@@ -145,6 +148,55 @@ public class PatientInfoActivity extends AppCompatActivity
                 showDescription(position);
             }
         });
+    }
+
+    private void makeChoice()
+    {
+
+
+        LayoutInflater li = LayoutInflater.from(PatientInfoActivity.this);
+        View promptsView = li.inflate(R.layout.prompt4, null);
+
+        //Создаем AlertDialog
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(PatientInfoActivity.this);
+
+        //Настраиваем prompt.xml для нашего AlertDialog:
+        alertDialog.setView(promptsView);
+        alertDialog.setCancelable(true);
+        alertDialog.setTitle("Выберите способ");
+
+        final RadioButton button1 = (RadioButton) promptsView.findViewById(R.id.make_photo1);
+        final RadioButton button2 = (RadioButton) promptsView.findViewById(R.id.choose_image1);
+
+        alertDialog.setPositiveButton("Перейти",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        if (button1.isChecked())
+                        {
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent,PHOTO_REQUEST);
+                        }
+                        else if (button2.isChecked()){
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            startActivityForResult(intent, GALLERY_REQUEST);
+                        }
+                    }
+                });
+
+        alertDialog.setNegativeButton("Вернуться",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog nalertDialog = alertDialog.create();
+
+        //и отображаем его:
+        nalertDialog.show();
     }
 
     private void savePatients() {
@@ -411,6 +463,12 @@ public class PatientInfoActivity extends AppCompatActivity
 
         patient = (Patient) getIntent().getSerializableExtra("patient");
         arrayPatients = new ArrayList<>();
+        if (visibility) {
+            editInterface();
+        }
+        else {
+            textInterface();
+        }
     }
 
     @Override
@@ -421,6 +479,9 @@ public class PatientInfoActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (visibility)
+            menu.getItem(0).setChecked(true);
+        else menu.getItem(0).setChecked(false);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -542,6 +603,7 @@ public class PatientInfoActivity extends AppCompatActivity
 
     private void editInterface()
     {
+        visibility = true;
         firstName.setVisibility(View.INVISIBLE);
         lastName.setVisibility(View.INVISIBLE);
         patronymic.setVisibility(View.INVISIBLE);
@@ -579,6 +641,7 @@ public class PatientInfoActivity extends AppCompatActivity
 
     private void textInterface()
     {
+        visibility = false;
         firstName.setVisibility(View.VISIBLE);
         lastName.setVisibility(View.VISIBLE);
         patronymic.setVisibility(View.VISIBLE);
